@@ -1,7 +1,7 @@
 
 import bcrypt from "bcryptjs";
 import User from "../models/user.model.js"
-
+import UserAddress from "../models/user-address.model.js"
 
 class UserController {
     getAll(req, res) {
@@ -43,16 +43,16 @@ class UserController {
         User.update(req.body, {
             where: { id: id }
         }).then(([num]) => {
-                if (num === 1) {
-                    res.send({
-                        message: "User was updated successfully."
-                    });
-                } else {
-                    res.status(404).send({
-                        message: `Cannot update User with id=${id}. Maybe Tutorial was not found or req.body is empty!`
-                    });
-                }
-            })
+            if (num === 1) {
+                res.send({
+                    message: "User was updated successfully."
+                });
+            } else {
+                res.status(404).send({
+                    message: `Cannot update User with id=${id}. Maybe Tutorial was not found or req.body is empty!`
+                });
+            }
+        })
             .catch(err => {
                 res.status(500).send({
                     message: "Error updating user with id=" + id
@@ -79,6 +79,27 @@ class UserController {
                 res.status(500).send({
                     message: "Could not delete user with id=" + id
                 });
+            });
+    }
+
+    //API returns user information along with all addresses
+    async profile(req, res) {
+        const id = req.params.id;
+        await User.findByPk(id)
+            .then(async data => {
+                if (!data) {
+                    res.status(404).send({ message: "Not found user with id " + id });
+                } else {
+                    await UserAddress.findOne({ where: { userId: id } }).then(dataAddress => {
+                        if (!dataAddress) {
+                            res.status(200).json(data)
+                        } else {
+                            res.status(200).json({data, dataAddress})
+                        }
+                    })                
+                };
+            }).catch(err => {
+                res.status(500).send({ message: "Error retrieving user with id=" + id });
             });
     }
 }
