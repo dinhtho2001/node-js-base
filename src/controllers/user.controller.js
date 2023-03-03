@@ -83,9 +83,9 @@ class UserController {
     }
 
     //API returns user information along with all addresses
-    async profile(req, res) {
+    profile(req, res) {
         const id = req.params.id;
-        await User.findByPk(id)
+        User.findByPk(id)
             .then(async data => {
                 if (!data) {
                     res.status(404).send({ message: "Not found user with id " + id });
@@ -94,9 +94,9 @@ class UserController {
                         if (!dataAddress) {
                             res.status(200).json(data)
                         } else {
-                            res.status(200).json({data, dataAddress})
+                            res.status(200).json({ data, dataAddress })
                         }
-                    })                
+                    })
                 };
             }).catch(err => {
                 res.status(500).send({ message: "Error retrieving user with id=" + id });
