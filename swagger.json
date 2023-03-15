@@ -1,0 +1,27 @@
+{ 
+  "swagger": "2.0", 
+  "info": { 
+    "version": "1.0.0",
+    "title": "Dự án người dùng của tôi CRUD", 
+    "description": "Dự án người dùng của tôi API ứng dụng", 
+    "giấy phép": { 
+      "name": "MIT", 
+      "url": " https://opensource.org/licenses/MIT " 
+    } 
+  }, 
+  "host": "localhost:8000", 
+  "basePath" : "/", 
+  "tags": [ 
+    { 
+      "name": "Users", 
+      "description": "API cho người dùng trong hệ thống"
+    } ,
+    { 
+        "name": "test", 
+        "description": "API cho người dùng trong hệ thống"
+    } 
+  ], 
+  "lược đồ": ["http"], 
+  "tiêu thụ": ["application/json"], 
+  "sản xuất": ["application/json"] 
+}

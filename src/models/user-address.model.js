@@ -44,5 +44,9 @@ const UserAddress = sequelize.define("user_address", {
     }
 }, { tableName: 'user_address', freezeTableName: true, });
 
+// UserAddress.belongsTo(User, {
+//     foreignKey: "id",
+//     as: "user",
+// });
 
 export default UserAddress;

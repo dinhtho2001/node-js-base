@@ -42,5 +42,6 @@ const User = sequelize.define("user", {
     }
 }, { tableName: 'user' });
 
+// User.hasMany(UserAddress, { as: "userAddresses" });
 
 export default User;
