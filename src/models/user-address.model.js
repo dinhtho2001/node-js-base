@@ -1,5 +1,6 @@
 import { INTEGER, STRING, TEXT, DATE } from 'sequelize';
 import { sequelize } from '../db/index.js';
+import User from './user.model.js';
 
 const UserAddress = sequelize.define("user_address", {
     id: {
@@ -42,11 +43,7 @@ const UserAddress = sequelize.define("user_address", {
         type: DATE,
         field: 'modified_at'
     }
-}, { tableName: 'user_address', freezeTableName: true, });
-
-// UserAddress.belongsTo(User, {
-//     foreignKey: "id",
-//     as: "user",
-// });
+}, { tableName: 'user_address', freezeTableName: true }
+);
 
 export default UserAddress;
