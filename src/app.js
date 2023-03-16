@@ -19,6 +19,13 @@ sequelize.authenticate()
 		console.error('Unable to connect to the database:', err);
 	});
 
+sequelize.sync({ alter: true })
+	.then(() => {
+		console.log('Tables created!');
+ 	})
+	.catch((err) => {
+		console.log('Table creation failed:', err);
+	});
 
 app.use(json());
 app.use(urlencoded({
