@@ -6,6 +6,8 @@ const router = Router();
 
 router.get('', userController.getAll);
 
+router.post('/paging-user/:page', userController.getAllAndPaging);
+
 router.post('', userController.create);
 
 router.get('/:id', userController.findOne);
