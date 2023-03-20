@@ -26,4 +26,22 @@ CREATE TABLE public.user(
     ON DELETE CASCADE
     ON UPDATE CASCADE
 );
+
+INSERT INTO public."user"(username, password, first_name, last_name, email, telephone, created_at, modified_at)
+	VALUES ('admin', '123', 'A', 'Nguyễn Văn', 'admin@gmail.com', '0123456789', '2001-01-01', '2001-01-01');
+INSERT INTO public."user"(username, password, first_name, last_name, email, telephone, created_at, modified_at)
+	VALUES ('user', '123', 'B', 'Nguyễn Văn', 'user@gmail.com', '0123456789', '2001-01-01', '2001-01-01');
+
+INSERT INTO public.user_address(
+	address, city, district, ward, telephone, created_at, modified_at, "userId")
+	VALUES ('default', 'Quy Nhơn', '', 'Trần Hưng Đạo', '0123456789', '2001-01-01', '2001-01-01', 1);
+INSERT INTO public.user_address(
+	address, city, district, ward, telephone, created_at, modified_at, "userId")
+	VALUES ('default', 'Quy Nhơn', '', 'Quang Trung', '0123456789', '2001-01-01', '2001-01-01', 1);
+INSERT INTO public.user_address(
+	address, city, district, ward, telephone, created_at, modified_at, "userId")
+	VALUES ('default', 'Quy Nhơn', '', 'Trần Hưng Đạo', '0123456789', '2001-01-01', '2001-01-01', 2);
+INSERT INTO public.user_address(
+	address, city, district, ward, telephone, created_at, modified_at, "userId")
+	VALUES ('default', 'Quy Nhơn', '', 'Nguyễn Huệ', '0123456789', '2001-01-01', '2001-01-01', 1);
   

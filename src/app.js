@@ -1,7 +1,8 @@
 import express, { json, urlencoded } from 'express';
 import morgan from 'morgan';
 import swaggerUi from 'swagger-ui-express';
-import swaggerDocument from '../swagger.json' assert { type: "json" };
+//import swaggerSpec from './config/swagger.config.js';
+//import swaggerDocument from '../swagger.json' assert { type: "json" };
 import cors from "cors";
 import router from './routes/index.js';
 import { sequelize } from './db/index.js';
@@ -32,16 +33,17 @@ app.use(urlencoded({
 	extended: false
 }));
 
+//app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 app.use('/api', router);
 
 // middleware
 app.use(morgan('dev'));
 
-app.use(
-	'/api-docs',
-	swaggerUi.serve,
-	swaggerUi.setup(swaggerDocument)
-);
+// app.use(
+// 	'/api-docs',
+// 	swaggerUi.serve,
+// 	swaggerUi.setup(swaggerDocument)
+// );
 
 app.listen(process.env.PORT || port, function () {
 	console.log("A Node Js API is listening at address http://localhost:%s", port)

@@ -9,6 +9,7 @@ class UserController {
             .then(posts => res.status(200).json(posts))
             .catch(err => res.status(400).json({ err }));
     }
+
     create(req, res) {
         // check user and password are required
         // check user is already exist
@@ -18,6 +19,7 @@ class UserController {
             .then(result => res.status(200).json(result))
             .catch(err => res.status(401).send(err.message));
     }
+
     findOne(req, res) {
         const id = req.params.id;
         User.findByPk(id)
@@ -31,6 +33,7 @@ class UserController {
                 res.status(500).send({ message: "Error retrieving user with id=" + id });
             });
     }
+
     update(req, res) {
         if (!req.body) {
             return res.status(400).send({
@@ -59,6 +62,7 @@ class UserController {
                 });
             });
     }
+    
     delete(req, res) {
         const id = req.params.id;
 
@@ -85,16 +89,19 @@ class UserController {
     //API returns user information along with all addresses
     profile(req, res) {
         const id = req.params.id;
+        const response = {};
         User.findByPk(id)
             .then(async data => {
                 if (!data) {
                     res.status(404).send({ message: "Not found user with id " + id });
                 } else {
-                    await UserAddress.findOne({ where: { userId: id } }).then(dataAddress => {
+                    response.data = data;
+                    await UserAddress.findAll({ where: { userId: id } }).then(dataAddress => {
+                        response.dataAddress = dataAddress;
                         if (!dataAddress) {
-                            res.status(200).json(data)
+                            res.status(200).json(response);
                         } else {
-                            res.status(200).json({ data, dataAddress })
+                            res.status(200).json(response);
                         }
                     })
                 };
