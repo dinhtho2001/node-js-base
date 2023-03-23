@@ -6,7 +6,7 @@ const router = Router();
 
 router.get('', userController.getAll);
 
-router.post('/paging-user/:page', userController.getAllAndPaging);
+router.post('/paging-user', userController.getAllAndPaging);
 
 router.post('', userController.create);
 

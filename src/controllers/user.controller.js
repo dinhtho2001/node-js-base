@@ -11,9 +11,9 @@ class UserController {
 
   async getAllAndPaging(req, res) {
     try {
-      const page = parseInt(req.params.page) || 1;
-      const limit = /* parseInt(req.query.limit) || */ 2;
-      const startIndex = page - 1; /* * limit */
+      const page = parseInt(req.query.page) || 1;
+      const limit = parseInt(req.query.limit) || 2;
+      const startIndex = page - 1;
       const endIndex = page * limit;
       const results = {};
       try {
